@@ -1,0 +1,13 @@
+{
+  "name": "miranum-app-registry",
+  "version": "1.0.0",
+  "apps": [
+    {
+      "key": "hello-world",
+      "label": "Hello World",
+      "description": "Demo-App zum Verifizieren des Deploy- und Gateway-Flows",
+      "category": "demo",
+      "tags": ["demo"]
+    }
+  ]
+}

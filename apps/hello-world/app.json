@@ -1,0 +1,7 @@
+{
+  "image": "registry.fly.io/miranum-hello-world:latest",
+  "internalPort": 3000,
+  "healthCheckPath": "/health",
+  "repoUrl": "https://github.com/dominikhorn93/miranum-hello-world",
+  "secrets": []
+}
