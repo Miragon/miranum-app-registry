@@ -7,7 +7,7 @@ Demo-App zum Verifizieren des Deploy- und Gateway-Flows.
 Ein minimaler HTTP-Server, der auf `GET /health` antwortet und damit zeigt,
 dass die komplette Deploy-Kette funktioniert:
 
-1. Portal startet ein neues Fly.io Machine aus `registry.fly.io/miranum-hello-world:latest`
+1. Portal startet ein neues Fly.io Machine aus `registry.fly.io/miranum-app-template:latest`
 2. Das Gateway leitet Requests an `https://<org-slug>.gateway/<app-key>/...` an die Machine weiter
 3. Die App antwortet auf Port 3000
 
