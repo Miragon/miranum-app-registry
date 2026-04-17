@@ -1,0 +1,18 @@
+{
+  "image": "registry.fly.io/ms-365-mcp-server:latest",
+  "internalPort": 3000,
+  "healthCheckPath": "/",
+  "repoUrl": "https://github.com/Miragon/miranum-365-mcp-server",
+  "secrets": [
+    {
+      "key": "MS365_MCP_CLIENT_ID",
+      "label": "Microsoft Entra Client ID",
+      "required": true
+    },
+    {
+      "key": "MS365_MCP_TENANT_ID",
+      "label": "Microsoft Entra Tenant ID",
+      "required": true
+    }
+  ]
+}
