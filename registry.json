@@ -3,13 +3,6 @@
   "version": "1.0.0",
   "apps": [
     {
-      "key": "hello-world",
-      "label": "Hello World",
-      "description": "Demo-App zum Verifizieren des Deploy- und Gateway-Flows",
-      "category": "demo",
-      "tags": ["demo"]
-    },
-    {
       "key": "ms365-mcp",
       "label": "Office 365 MCP",
       "description": "MCP-Server für Microsoft 365 (Outlook, Teams, SharePoint, OneDrive) über die Graph API",
