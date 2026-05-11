@@ -8,6 +8,13 @@
       "description": "MCP-Server für Microsoft 365 (Outlook, Teams, SharePoint, OneDrive) über die Graph API",
       "category": "mcp",
       "tags": ["mcp", "microsoft", "office365"]
+    },
+    {
+      "key": "dimacon-sync",
+      "label": "Dimacon · Clockin Sync",
+      "description": "Synchronisiert Tagespläne aus Dimacon nach Clockin — Projekte, Mitarbeiter, Archivierung",
+      "category": "integration",
+      "tags": ["sync", "dimacon", "clockin", "lexoffice"]
     }
   ]
 }
