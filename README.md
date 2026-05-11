@@ -59,19 +59,61 @@ Die volle Deploy-Definition. Wird geladen, sobald ein Nutzer die App-Details
   "internalPort": 3000,
   "healthCheckPath": "/health",
   "repoUrl": "https://github.com/dominikhorn93/miranum-hello-world",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "volumes": [{ "name": "data", "mountPath": "/data", "sizeGb": 1 }],
+  "resources": { "memoryMb": 512, "cpus": 1, "cpuKind": "shared" },
   "secrets": []
 }
 ```
 
 Felder:
 
-| Feld | Pflicht | Beschreibung |
-|---|---|---|
-| `image` | ja | Docker-Image-URI, typischerweise `registry.fly.io/<name>:latest`. |
-| `internalPort` | nein | Port im Container (Default `3000`). |
-| `healthCheckPath` | nein | Optionaler HTTP-Health-Check-Pfad. |
-| `repoUrl` | nein | Link zum Quellcode-Repo — wird im Details-Dialog als Link angezeigt. |
-| `secrets` | nein | Liste der Secrets, die der Admin pro Org konfigurieren muss: `{ key, label, required? }[]`. |
+| Feld              | Pflicht | Beschreibung                                                                                  |
+| ----------------- | ------- | --------------------------------------------------------------------------------------------- |
+| `image`           | ja      | Docker-Image-URI, typischerweise `registry.fly.io/<name>:latest`.                             |
+| `internalPort`    | nein    | Port im Container (Default `3000`).                                                           |
+| `healthCheckPath` | nein    | Optionaler HTTP-Health-Check-Pfad.                                                            |
+| `repoUrl`         | nein    | Link zum Quellcode-Repo — wird im Details-Dialog als Link angezeigt.                          |
+| `env`             | nein    | Nicht-sensible Default-Env-Vars, die das Portal beim Deploy setzt: `Record<string, string>`.  |
+| `volumes`         | nein    | Persistente Volumes, die das Portal anlegen + mounten muss (siehe unten).                     |
+| `resources`       | nein    | Sizing-Hint für die Machine. Default = Fly-Default (256 MB, shared-1x).                       |
+| `secrets`         | nein    | Liste der Secrets, die der Admin pro Org konfigurieren muss: `{ key, label, required? }[]`.   |
+
+#### `env` vs. `secrets`
+
+`secrets` sind sensibel (API-Tokens, Passwörter) und werden pro Org vom Admin
+befüllt — das Portal speichert sie als Fly-Secret. `env` ist für **statische
+nicht-sensible** Defaults aus dem Registry (z. B. `SETTINGS_PATH=/data/settings.json`)
+und wird beim Deploy als normale Env-Var gesetzt.
+
+#### `volumes`
+
+Persistente Storage-Anforderungen der App. Das Portal legt für jeden Eintrag
+beim ersten Deploy ein Fly-Volume an und referenziert es im Machine-Config als
+Mount. Volumes überleben Redeploys.
+
+```json
+"volumes": [
+  { "name": "data", "mountPath": "/data", "sizeGb": 1, "region": "fra" }
+]
+```
+
+| Feld        | Pflicht | Beschreibung                                                                  |
+| ----------- | ------- | ----------------------------------------------------------------------------- |
+| `name`      | ja      | Stabiler Bezeichner, lowercase + Underscore. Wird zum Fly-Volume-Namen.       |
+| `mountPath` | ja      | Pfad im Container, z. B. `/data`.                                             |
+| `sizeGb`    | ja      | Größe in GB. Fly Minimum ist 1.                                               |
+| `region`    | nein    | Region des Volumes. Default = Region der App. Wichtig: Volumes sind region-pinned. |
+
+#### `resources`
+
+| Feld       | Pflicht | Beschreibung                                                  |
+| ---------- | ------- | ------------------------------------------------------------- |
+| `memoryMb` | nein    | RAM in MB.                                                    |
+| `cpus`     | nein    | Anzahl vCPUs.                                                 |
+| `cpuKind`  | nein    | `shared` oder `performance`. Default `shared`.                |
 
 ### `apps/<key>/README.md`
 

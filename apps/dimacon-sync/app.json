@@ -1,0 +1,58 @@
+{
+  "image": "registry.fly.io/miranum-dimacon-sync:latest",
+  "internalPort": 3020,
+  "healthCheckPath": "/healthz",
+  "repoUrl": "https://github.com/Miragon/miranum-dimacon-sync",
+  "env": {
+    "SETTINGS_PATH": "/data/settings.json"
+  },
+  "volumes": [
+    {
+      "name": "data",
+      "mountPath": "/data",
+      "sizeGb": 1
+    }
+  ],
+  "secrets": [
+    {
+      "key": "CLOCKIN_API_TOKEN",
+      "label": "ClockIn API Token",
+      "required": true
+    },
+    {
+      "key": "DIMACON_BASE_URL",
+      "label": "Dimacon Base URL",
+      "required": true
+    },
+    {
+      "key": "DIMACON_TENANT",
+      "label": "Dimacon Tenant",
+      "required": true
+    },
+    {
+      "key": "DIMACON_API_TOKEN",
+      "label": "Dimacon API Token",
+      "required": true
+    },
+    {
+      "key": "LEXWARE_OFFICE_API_KEY",
+      "label": "Lexoffice API Key",
+      "required": true
+    },
+    {
+      "key": "CLOCKIN_BASE_URL",
+      "label": "ClockIn Base URL (Override)",
+      "required": false
+    },
+    {
+      "key": "LEXWARE_OFFICE_BASE_URL",
+      "label": "Lexoffice Base URL (Override)",
+      "required": false
+    },
+    {
+      "key": "SYNC_WEBHOOK_SECRET",
+      "label": "Sync Webhook Shared Secret",
+      "required": false
+    }
+  ]
+}
