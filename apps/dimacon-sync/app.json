@@ -1,5 +1,5 @@
 {
-  "image": "registry.fly.io/miranum-dimacon-sync:latest",
+  "image": "registry.fly.io/miranum-dimacon-sync-stage:latest",
   "internalPort": 3020,
   "healthCheckPath": "/healthz",
   "repoUrl": "https://github.com/Miragon/miranum-dimacon-sync",
