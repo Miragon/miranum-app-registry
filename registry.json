@@ -3,11 +3,18 @@
   "version": "1.0.0",
   "apps": [
     {
-      "key": "hello-world",
-      "label": "Hello World",
-      "description": "Demo-App zum Verifizieren des Deploy- und Gateway-Flows",
-      "category": "demo",
-      "tags": ["demo"]
+      "key": "ms365-mcp",
+      "label": "Office 365 MCP",
+      "description": "MCP-Server für Microsoft 365 (Outlook, Teams, SharePoint, OneDrive) über die Graph API",
+      "category": "mcp",
+      "tags": ["mcp", "microsoft", "office365"]
+    },
+    {
+      "key": "dimacon-sync",
+      "label": "Dimacon · Clockin Sync",
+      "description": "Synchronisiert Tagespläne aus Dimacon nach Clockin — Projekte, Mitarbeiter, Archivierung",
+      "category": "integration",
+      "tags": ["sync", "dimacon", "clockin", "lexoffice"]
     }
   ]
 }
